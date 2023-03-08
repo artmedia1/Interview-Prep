@@ -1,6 +1,6 @@
-# Patterns
+# 14 Patterns to Ace Any Coding Interview Question
 
-## Sliding Window
+## 1. Sliding Window
 - `Used to perform operation on a specific window size pf array or linked list`
     - `i.e. finding longest subarray containing all 1s`
 - Start from first element, shift right by one element and adjust sthe length of window
@@ -17,7 +17,7 @@
 - Longest substring with 'K' disinct characters (medium)
 - String anagrams (hard)
 
-## Two Pointers or Iterators
+## 2. Two Pointers or Iterators
 - `Useful when searing pairs in a sorted array or linked list`
     - `i.e. when you have to compare each element of an array to it's other elements`
 - Iterate through data structure in tandem until one or both pointers hit a certain condition.
@@ -34,7 +34,7 @@
 - Triplets that sum to zero (medium)
 - Comparing strings that contain backspaces (medium)
 
-## Fast and Slow Pointers 
+## 3. Fast and Slow Pointers 
 - `Useful when dealing with cyclic linked lists or arrays`
     - The fast and slow pointers are bound to meet
 - The algorithm uses two points which move through the array (or sequence/linked list) at different speeds.
@@ -55,7 +55,7 @@
 - Palindrome linked list (medium)
 - Cycle in Circular Array (hard)
 
-## Merge Intervals
+## 4. Merge Intervals
 - `When you either need to find overlapping values or merge intervals if they overlap`
 - `Efficient technique to deal with overlapping Intervals`
 - Six different ways that the two intervals can relate to each other
@@ -71,7 +71,7 @@
 - Invervals Intersection (medium)
 - Maximum CPU Load (hard)
 
-## Cyclic Sort
+## 5. Cyclic Sort
 - `An approach to deal with problems involving arrays containing numbers in a given range.`
 - iterates over array one number at a time and if the current number we are iterating is not at the correct index, swap it with the number at it's correct index
 
@@ -87,7 +87,7 @@
 - Find the missing number (easy)
 - Find the smallest missing positive number (medium)
 
-## In-place reversal of linked list
+## 6. In-place reversal of linked list
 - `Reverse the links between a set of nodes in a linked list using the existing node objects and without using extra memory.`
 - The pattern reverses one node at a time starting with one variable (current) point to the head of the linked list, and one variable (previous) will point to the previous node that we have processed. We will reverse the current node by pointing it to previous before moving on to the next node. We will also  update the variable "previous" to always point to the previous node we have processed
 
@@ -101,7 +101,7 @@
 - Reverse a Sub-list (medium)
 - Reverse every K-element Sub-list (medium)
 
-## Tree BFS
+## 7. Tree BFS
 - `Any problem involving the traversal of a tree in a level-by-level order can be efficiently solved using this approach.`
 - Based on Breadth First Search (BFS), uses a queue to keep track of all nodes of a level before jumping to next.
 - Works by pushing root node to the queue and then continually iterating until the queue is empty
@@ -117,7 +117,7 @@
 - Binary Tree Level Order Traversal (easy)
 - Zigzag Traversal (medium)
 
-## Tree DFS
+## 8. Tree DFS
 - Based on the Depth First Search (DFS) technique
 - Use a recursion (or a stack for the iterative approach) to keep track of all the previous (parent) nodes while traversing
 - Start at root of tree, if node is not a leaf, we do three things
@@ -135,7 +135,7 @@
 - Sum of Path Numbers (medium)
 - All Paths for a Sum (medium)
 
-## Two Heaps
+## 9. Two Heaps
 - `Useful for problems when we are given a set of elements such that we can divide them into two parts and we are interested in knowing the smallest element in one part and the biggest element in the other part`.
 - Uses two heaps:
     1. Min Heap to find smallest element
@@ -154,5 +154,20 @@
 - `Useful in situations like Priority Queue, Scheduling`
 - `If the problem states that you need to find the smallest/largest/median elements of a set`
 - `Sometimes, useful in problems featuring a binary tree data structure`
-### Feautred Problems
+### Featured Problems
 - Find the Median of a Number Stream (medium)
+
+# 10. Subsets
+- 1Deals with problems involve dealing with Permutations (like given a String, find all combinations of the characters) and Combinations of a given set of elements.` 
+- The pattern Subsets describes an efficient Breadth First Search (BFS) approach to handle all these problems.
+
+- The pattern looks like this: Given a set of [1, 2, 3]:
+  1. Start with an empty set: [[]]
+  2. For each element in the set, add the element to the existing set to create 
+    - i.e. First number(1): new subsets: [[], [1]];
+    - Add the second number (5) to all the existing subsets: [[], [1], [5], [1,5]];
+    - Add the third number (3) to all the existing subsets: [[], [1], [5], [1,5], [3], [1,3], [5,3], [1,5,3]].
+
+<p align="center">
+<img src="media\subsets_example.png">
+</p>
