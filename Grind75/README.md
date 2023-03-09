@@ -124,7 +124,7 @@
     1. Decide whether to process the current node now (pre-order), or between processing two children (in-order) or after processing both children (post-order).
 
     <p align="center">
-    <img src="media\Tree_Traversal_Order.png">
+      <img src="media\Tree_Traversal_Order.png">
     </p>
 
     2. Make two recursive calls for both the children of the current node to process them.
@@ -142,7 +142,7 @@
     2. Max Heap to find largest element
 
 <p align="center">
-<img src="media\MinHeapAndMaxHeap1.png">
+  <img src="media\MinHeapAndMaxHeap1.png">
 </p>
 
 - Works by:
@@ -158,7 +158,7 @@
 - Find the Median of a Number Stream (medium)
 
 # 10. Subsets
-- 1Deals with problems involve dealing with Permutations (like given a String, find all combinations of the characters) and Combinations of a given set of elements.` 
+- `Deals with problems involve dealing with Permutations (like given a String, find all combinations of the characters) and Combinations of a given set of elements.` 
 - The pattern Subsets describes an efficient Breadth First Search (BFS) approach to handle all these problems.
 
 - The pattern looks like this: Given a set of [1, 2, 3]:
@@ -169,5 +169,158 @@
     - Add the third number (3) to all the existing subsets: [[], [1], [5], [1,5], [3], [1,3], [5,3], [1,5,3]].
 
 <p align="center">
-<img src="media\subsets_example.png">
+  <img src="media\subsets_example.png">
 </p>
+
+## How to Identify
+-  `Probelms where you need to find combinations or permutations of a given set`
+## Featured Problems
+- Subsets With Duplicates (easy)
+- String Permutations by changing case (medium)
+
+# 11. Modified binary search
+- `When given a sorted array, linked list, or matrix, and are asked to find a certain element`
+- The pattern looks for an ascending order set (numbers in increasing order, that is, from smallest to largest)
+  1. Find the middle, start and end. 
+      - middle = (start + end)/2 may produce an integer overflow
+      - middle = start + (end-start)/2 is recommended
+  2. If 'key' is equal to number at index middle then return middle
+  3. If ‘key’ isn’t equal to the index middle:
+  4. Check if key < arr[middle]. If it is reduce your search to end = middle — 1
+  5. Check if key > arr[middle]. If it is reduce your search to end = middle + 1
+
+<p align="center">
+  <img src="media\Modified_Binary_Search.png">
+</p>
+
+## Featured Problems
+- Order-agnostic Binary Search (easy)
+- Search in a Sorted Infinite Array (medium)
+
+# 12. Top K Elements
+- `Any problems that ask us to find the top/smallest/frequent 'K' elemnts among a given set`
+- The best data structure to keep track of ‘K’ elements is Heap.
+- It works as follows:
+  1. Insert ‘K’ elements into the min-heap or max-heap based on the problem.
+  2. Iterate through the remaining numbers and if you find one that is larger (or smaller, depends on problem) than what you have in the heap, then remove that number and insert the larger (or smaller) one.
+
+<p align="center">
+  <img src="media\Top_K_Elements.png">
+</p>
+
+
+
+  ~~~
+  import heapq
+  import numpy as np
+
+  def maxHeap(array): #inverting all numbers in the array to essentially perform a maxHeap
+      array = np.array(array)
+      array = -array
+      array = array.tolist()
+      heapq.heapify(array)
+      array = np.array(array)
+      array = -array
+      array = array.tolist()
+      return array
+
+  def getTopK(a, k):
+    temp = a[:k]
+    for i in range(k, len(a)):
+        if temp[0] < a[i]:
+            heapq.heappop(temp)
+            heapq.heappush(temp, a[i])
+    return temp
+
+  def getSmallestK(a, k):
+    a = maxHeap(a)
+    temp = a[:k]
+    for i in range(k, len(a)):
+        if temp[0] > a[i]:
+            heapq.heappop(temp)
+            heapq.heappush(temp, a[i])
+            temp = maxHeap(temp)
+    return temp
+
+  a= np.random.randint(100, size=10)
+  a = a.tolist()
+  smallest = getSmallestK(a,5)
+  largest = getTopK(a, 5)
+  print(smallest)
+  print(largest)
+  ~~~
+
+## How to identify
+- `If you’re asked to find the top/smallest/frequent ‘K’ elements of a given set`
+- `If you’re asked to sort an array to find an exact element`
+
+## Featured Problems
+- Top ‘K’ Numbers (easy)
+- Top ‘K’ Frequent Numbers (medium)
+
+# 13. K-way Merge
+- `Problems involving a set of sorted arrays`
+- Use a Heap to efficiently perform a sorted traversal of all the elements of all arrays
+  1. Push the smallest element of each array in a Min Heap to get the overall minimum
+  2. Push the next element from the same array to the heap
+  3. Repeat this process to make a sorted traversal of all elements
+
+- The illustration below follows this pattern:
+    1. Insert the first element of each array in a Min Heap.
+    2. After this, take out the smallest (top) element from the heap and add it to the merged list.
+    3. After removing the smallest element from the heap, insert the next element of the same list into the heap.
+    4. Repeat steps 2 and 3 to populate the merged list in sorted order.
+    
+<p align="center">
+  <img src="media\K_Way_Merge.png">
+</p>
+
+## How to identify the K-way Merge pattern:
+- `The problem will feature sorted arrays, lists, or a matrix`
+- `If the problem asks you to merge sorted lists, find the smallest element in a sorted list.`
+
+## Problems featuring the K-way Merge pattern:
+- Merge K Sorted Lists (medium)
+- K Pairs with Largest Sums (Hard)
+
+# 14. Topological Sort
+- `Used to find a linear ordering of elements that have dependencies on each other. For example, if event ‘B’ is dependent on event ‘A’, ‘A’ comes before ‘B’ in topological ordering.`
+- The pattern works like this:
+  1. Initialization
+      <ol type="a">
+        <li>Store the graph in adjacency lists by using a HashMap</li>
+        <li>To find all sources, use a HashMap to keep the count of in-degrees (in-degree is the number of connections that point inward at a vertex. Out-degree is the number of connections that originate at a vertex and point outward to other vertices.)</li>
+      </ol>
+  2. Build the graph and find in-degrees of all vertices
+      <ol type="a">
+        <li>Build the graph from the input and populate the in-degrees HashMap.</li>
+        <li>To find all sources, use a HashMap to keep the count of in-degrees</li>
+      </ol>
+  3. Find all sources
+      <ol type="a">
+        <li>All vertices with ‘0’ in-degrees will be sources and are stored in a Queue.</li>
+      </ol>
+  4. Sort
+      <ol type="a">
+        <li>For each source, do the following things:</li>
+        <ol type = "I">
+          <li>Add it to the sorted list.</li>
+          <li>Get all of its children from the graph.</li>
+          <li>Decrement the in-degree of each child by 1.</li>
+          <li>If a child’s in-degree becomes ‘0’, add it to the sources Queue.</li>
+        </ol>
+        <li>Repeat (a), until the source Queue is empty.</li>
+      </ol>
+
+<p align="center">
+  <img src="media\topological-sorting.png">
+</p>
+
+## How to Identify
+- `The problem will deal with graphs that have no directed cycles`
+- `If you’re asked to update all objects in a sorted order`
+- `If you have a class of objects that follow a particular order`
+
+## Featured Problems
+- Task scheduling (medium)
+- Minimum height of a tree (hard)
