@@ -35,8 +35,8 @@ if __name__ == "__main__":
     list1 = ListNode(1, ListNode(2, ListNode(4)))
     list2 = ListNode(1, ListNode(3, ListNode(4)))
     test = solution.mergeTwoLists(list1, list2)
-    printList = []
     
+    printList = []
     while test:
         printList.append(test.val)
         test = test.next
