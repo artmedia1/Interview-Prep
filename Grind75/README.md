@@ -120,7 +120,7 @@
 ## 8. Tree DFS
 - Based on the Depth First Search (DFS) technique
 - Use a recursion (or a stack for the iterative approach) to keep track of all the previous (parent) nodes while traversing
-- Start at root of tree, if node is not a leaf, we do three things
+- Start at root of tree, if node is not a leaf, we do two things
     1. Decide whether to process the current node now (pre-order), or between processing two children (in-order) or after processing both children (post-order).
 
     <p align="center">
